@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0">
+  <meta name="author" content="Samuele Frasconi">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="style/style.css" type="text/css">
+  <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>Frontend Mentor | FAQ Accordion Card</title>
+  <style>
+    .attribution { font-size: 11px; text-align: center; display: none;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="images/illustration-box-desktop.svg" alt="boxImage" class="imgBox">
+    <picture>
+      <source media="(max-width: 400px)" srcset="images/illustration-woman-online-mobile.svg" class="imgWoman">
+      <img src="images/illustration-woman-online-desktop.svg" alt="illustration" class="imgWoman">
+    </picture>
+    <section>
+      <h1>FAQ</h1>
+      <div class="container" id="div1">
+        <h2 id="h21">How many team members can I invite?</h2>
+        <img src="images/icon-arrow-down.svg" alt="arrowIcon" class="imgArrow" id="arrow1">
+      </div>
+      <p id="p1">You can invite up to 2 additional users on the Free plan. There is no limit on 
+        team members for the Premium plan.</p>
+        <div class="divider"></div>
+      <div class="container" id="div2">
+        <h2 id="h22">What is the maximum file upload size?</h2>
+        <img src="images/icon-arrow-down.svg" alt="arrowIcon" class="imgArrow" id="arrow2">
+      </div>
+      <p id="p2">No more than 2GB. All files in your account must fit your allotted storage space.</p>
+      <div class="divider"></div>
+      <div class="container" id="div3">
+        <h2 id="h23">How do I reset my password?</h2>
+        <img src="images/icon-arrow-down.svg" alt="arrowIcon" class="imgArrow" id="arrow3">
+      </div>
+      <p id="p3">Click “Forgot password” from the login page or “Change password” from your profile page.
+        A reset link will be emailed to you.</p>
+        <div class="divider"></div>
+      <div class="container" id="div4">
+        <h2 id="h24">Can I cancel my subscription?</h2>
+        <img src="images/icon-arrow-down.svg" alt="arrowIcon" class="imgArrow" id="arrow4">
+      </div>
+      <p id="p4">Yes! Send us a message and we’ll process your request no questions asked.</p>
+      <div class="divider"></div>
+      <div class="container" id="div5">
+        <h2 id="h25">Do you provide additional support?</h2>
+        <img src="images/icon-arrow-down.svg" alt="arrowIcon" class="imgArrow" id="arrow5">
+      </div>
+      <p id="p5">Chat and email support is available 24/7. Phone lines are open during normal business hours.</p>
+      <div class="divider"></div>
+    </section>
+  </main>
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Samuele Frasconi</a>.
+  </div>
+</body>
+<script>
+  let num = 2;
+  let showing = true;
+
+  document.getElementById(`p${num}`).className="selectedP";
+  document.getElementById(`h2${num}`).className="selectedH2";
+  document.getElementById(`arrow${num}`).className = "imgArrow selectedArrow";
+
+  const array = document.getElementsByClassName("container");
+
+  for(let el of array) {
+    el.addEventListener("click", function handleClick(event) {
+      let id = el.id;
+      let newNum = id.substring(3);
+      document.getElementById(`p${num}`).className="";
+      document.getElementById(`h2${num}`).className="";
+      document.getElementById(`arrow${num}`).className="imgArrow";
+
+      if(num==newNum && showing==true) {
+        showing = false;
+        document.getElementById(`p${num}`).className="";
+        document.getElementById(`h2${num}`).className="";
+        document.getElementById(`arrow${num}`).className="imgArrow";
+      }else {
+        num = newNum;
+        document.getElementById(`p${num}`).className="selectedP";
+        document.getElementById(`h2${num}`).className="selectedH2";
+        document.getElementById(`arrow${num}`).className = "imgArrow selectedArrow";
+        showing = true;
+      }
+    })
+
+    el.addEventListener("mouseover", function handleHover(event) {
+      document.getElementsByClassName("imgBox")[0].className = "imgBox moveBox";
+    })
+
+    el.addEventListener("mouseout", function handleHoverOut(event) {
+      document.getElementsByClassName("imgBox")[0].className = "imgBox";
+    })
+
+  }
+  
+</script>
+</html>
